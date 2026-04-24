@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "Edit|MultiEdit|Write",
+      "hooks": [
+        { "type": "command", "command": "node .claude/hooks/post-edit-component.js" },
+        { "type": "command", "command": "node .claude/hooks/post-edit-globals.js" }
+      ]
+    }]
+  }
+}

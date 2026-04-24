@@ -9,6 +9,8 @@ import { PaletteProvider } from "@/components/PaletteProvider";
 import { PaletteBadge } from "@/components/PaletteBadge";
 import { Analytics } from "@/components/Analytics";
 import { Toaster } from "@/components/Toast";
+import { Nav } from "@/components/Nav";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -48,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <LenisProvider>
           <MotionConfig transition={t.base} reducedMotion="user">
             <CursorProvider />
+            <Nav />
             {DEMO ? (
               <PaletteProvider>
                 {children}
@@ -56,6 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             ) : (
               children
             )}
+            <SiteFooter />
           </MotionConfig>
         </LenisProvider>
         {/* Toaster must be mounted for notify.success()/notify.error() calls to render.

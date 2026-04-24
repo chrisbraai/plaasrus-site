@@ -4,33 +4,44 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Palette — Outeniqua Stoep (Plaasrus) ───────────────────────────────────── */
+/* ─── Palette — Braambos Harvest (Plaasrus) ──────────────────────────────────── */
 /*
-   Palette: Outeniqua Stoep — extends Braambos parent system with a mountain sage accent.
-   Ramp 1 (structural): Bark → linen — warm earthy dark-to-light from Braambos parent.
-   Ramp 2 (accent): Stoep sage — early-morning mountain-light register.
-   Ramp 3 (danger): Braambos terracotta (#C75A30) — repurposed as stop/alert on this site.
+   Palette: Braambos Harvest — warm grain-and-bronze palette for Plaasrus farm stay.
+   Ramp 1 (structural): Warm bronze-brown dark family — text, footer, inverse surfaces.
+   Ramp 2 (light/accent): Given palette anchors — cornsilk bg through light-bronze accent.
+   Ramp 3 (danger): Braambos terracotta (#C75A30) — stop/alert.
 
-   Named tokens (reference):
-     --stoep-0 #0C1410  --stoep-1 #1C2E1E  --stoep-2 #324F34  --stoep-3 ★ #527A54
-     --stoep-4 #82A884  --stoep-5 #B8D0BA  --stoep-6 #ECF4ED
-     --bark-0 #0E0D0B   --bark-1 #221C12   primary-text #4E3C27   linen-6 #F0EBE2
+   Named anchors (given):
+     --cornsilk    #fefae0  page background
+     --papaya-whip #faedcd  raised/newsprint surfaces
+     --beige       #e9edc9  subtle surfaces
+     --tea-green   #ccd5ae  muted text on dark (ticker, echo)
+     --light-bronze #d4a373 ★ primary accent, CTAs
 */
 
 :root {
-  /* Ramp 1 — structural (bark to linen) */
-  --ramp1-0: #4E3C27;   /* primary text — warm brown */
-  --ramp1-1: #221C12;   /* dark bark — inverse bg, footer, stat blocks */
-  --ramp1-3: #8C7156;   /* secondary text */
-  --ramp1-4: #B09470;   /* tertiary text, UI accents */
-  --ramp1-5: #C8B49C;   /* borders, dividers */
-  --ramp1-6: #F0EBE2;   /* linen — subtle surfaces */
+  /* Named palette anchors */
+  --cornsilk:     #fefae0;
+  --papaya-whip:  #faedcd;
+  --beige:        #e9edc9;
+  --tea-green:    #ccd5ae;
+  --light-bronze: #d4a373;   /* ★ primary accent */
+  --sky-teal:     #c5dfe4;   /* pale sky-teal — section-end bg (book + footer) */
 
-  /* Ramp 2 — accent (Outeniqua stoep sage) */
-  --ramp2-1: #1C2E1E;   /* dark fynbos — hover state */
-  --ramp2-3: #527A54;   /* Outeniqua sage ★ — PRIMARY accent, CTAs */
-  --ramp2-5: #B8D0BA;   /* mountain mist — raised surfaces */
-  --ramp2-6: #ECF4ED;   /* stoep wash — page background */
+  /* Ramp 1 — structural (warm bronze-brown, derived from light-bronze family) */
+  --ramp1-0: #3d2b1a;   /* primary text */
+  --ramp1-1: #2c1f0f;   /* footer / inverse bg */
+  --ramp1-3: #7a5a35;   /* secondary text */
+  --ramp1-4: #a07848;   /* tertiary text, rule-strong */
+  --ramp1-5: #c9a878;   /* borders, dividers */
+  --ramp1-6: #e9edc9;   /* = beige — subtle surfaces */
+
+  /* Ramp 2 — harvest light (given palette + derived hover) */
+  --ramp2-1: #b8885a;   /* darker bronze — accent hover */
+  --ramp2-3: #d4a373;   /* = light-bronze ★ — PRIMARY accent, CTAs */
+  --ramp2-4: #ccd5ae;   /* = tea-green — muted on dark surfaces */
+  --ramp2-5: #faedcd;   /* = papaya-whip — raised surfaces */
+  --ramp2-6: #fefae0;   /* = cornsilk — page background */
 
   /* Ramp 3 — danger (Braambos terracotta) */
   --ramp3-2: #C75A30;   /* terracotta — danger surface */
@@ -49,13 +60,14 @@
   --bg-subtle:    var(--ramp1-6);
   --bg-inverse:   var(--ramp1-1);
   --bg-newsprint: var(--ramp2-5);
+  --bg-end:       var(--sky-teal);   /* pale sky-teal — book + footer sections */
 
   /* Ink */
   --fg:                var(--ramp1-0);
   --fg-muted:          var(--ramp1-3);
   --fg-quiet:          var(--ramp1-4);
   --fg-inverse:        var(--ramp2-6);
-  --fg-inverse-muted:  var(--ramp2-5);
+  --fg-inverse-muted:  var(--ramp2-4);   /* tea-green — sage note on dark */
 
   /* Structure */
   --rule:         var(--ramp1-5);
@@ -199,6 +211,7 @@
   --color-bg-subtle:         var(--bg-subtle);
   --color-bg-inverse:        var(--bg-inverse);
   --color-bg-newsprint:      var(--bg-newsprint);
+  --color-bg-end:            var(--bg-end);
   --color-fg:                var(--fg);
   --color-fg-muted:          var(--fg-muted);
   --color-fg-quiet:          var(--fg-quiet);
@@ -313,6 +326,26 @@
     a:not([class])::after {
       transition: none;
     }
+  }
+}
+
+/* ─── Mandate 5 — 3D lift on hover ──────────────────────────────────────────── */
+/* Applies to headings, cards, containers, wboxes. Exempt: nav, p, small text, button. */
+h1, h2, h3, h4,
+.card, .wbox {
+  transition: transform var(--dur-fast) var(--ease);
+}
+h1:hover, h2:hover, h3:hover, h4:hover,
+.card:hover, .wbox:hover {
+  transform: perspective(800px) rotateX(1deg) translateY(-3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  h1, h2, h3, h4, .card, .wbox {
+    transition: none;
+  }
+  h1:hover, h2:hover, h3:hover, h4:hover,
+  .card:hover, .wbox:hover {
+    transform: none;
   }
 }
 

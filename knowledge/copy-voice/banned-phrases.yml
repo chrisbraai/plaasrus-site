@@ -1,0 +1,28 @@
+adjectives_without_proof:
+  - passionate
+  - affordable
+  - innovative
+  - cutting-edge
+  - dedicated
+  - solutions
+  - professional
+  - expert
+  - revolutionary
+  - world-class
+  - industry-leading
+  - trusted
+
+ctas:
+  # C5 applies to user-facing copy only — button labels, link text, CTA strings in JSX
+  # text content. Technical uses (type="submit", function names, server actions, HTML
+  # event attributes, test assertion strings) are exempt. Mark exempt lines with
+  # // YIELD-FORKED (or /* YIELD-FORKED */ inside JSX expressions) to silence the hook.
+  - "get started"
+  - "learn more"
+  - "contact us"
+  - "click here"
+  - "submit"
+  - "next step"
+  - "feel free"
+  - "let's chat"
+  - "reach out"
