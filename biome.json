@@ -1,20 +1,13 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
   "files": {
-    "ignore": [
-      ".next",
-      "node_modules",
-      "out",
-      "coverage",
-      ".lighthouse",
-      "next-env.d.ts",
-      "public"
-    ]
+    "ignoreUnknown": true,
+    "includes": ["src", "app"]
   },
   "formatter": {
     "enabled": true,
@@ -37,7 +30,10 @@
         "useTemplate": "warn"
       },
       "complexity": {
-        "noExcessiveCognitiveComplexity": { "level": "warn", "options": { "maxAllowedComplexity": 20 } }
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": { "maxAllowedComplexity": 20 }
+        }
       },
       "correctness": {
         "noUnusedVariables": "warn",
