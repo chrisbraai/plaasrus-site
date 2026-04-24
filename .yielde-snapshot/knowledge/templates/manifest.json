@@ -1,0 +1,784 @@
+{
+  "generatedAt": "2026-04-24T07:52:49.373Z",
+  "generator": "tools/generate-manifest.js",
+  "source": "knowledge/templates/INDEX.md",
+  "count": 39,
+  "templates": [
+    {
+      "name": "Animated-Hero",
+      "file": "knowledge/templates/Animated-Hero.md",
+      "uScore": "U1",
+      "summary": "Centred hero with a static text prefix and one rotating word that cycles through an array every 2 seconds.",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react",
+        "shadcn/button"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Aurora-Background",
+      "file": "knowledge/templates/Aurora-Background.md",
+      "uScore": "U1",
+      "summary": "Full-screen animated aurora (northern lights) using CSS Tailwind keyframe animation.",
+      "dependencies": [
+        "framer-motion",
+        "tailwind config extension"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "Banned on all Yielde brand pages",
+          "text": "Aurora colours are blue/indigo/violet, a direct conflict with the no-purple rule and the Garden Route palette. Do not use on any Yielde page under any circumstance."
+        },
+        {
+          "label": "Permitted for client sites only",
+          "text": "Type 3 Coastal/Nordic (wellness, beauty, lifestyle) or Type 2A/2B tech where a cool-blue palette is already established. Colour stops must be overridden to match the client palette before shipping."
+        }
+      ],
+      "banned": true
+    },
+    {
+      "name": "Background-Shapes",
+      "file": "knowledge/templates/Background-Shapes.md",
+      "uScore": "U1",
+      "summary": "Full-screen hero on a near-black (#030303) background with 3-6 large translucent pill/ellipse shapes that animate in from above on load, then slowly bob on a 12s easeInOut loop.",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "Hard conflict",
+          "text": "The shapes are rounded-full. The design system bans all border-radius globally. These shapes are the core visual element, not decoration. Removing their radius defeats the template entirely. Do not use on any Yielde brand page."
+        },
+        {
+          "label": "Hard conflict, zero-radius rule",
+          "text": "The shapes are rounded-full. The design system bans all border-radius globally. These shapes are the core visual element, not decoration. Removing their radius defeats the template entirely. Do not use on any Yielde brand page."
+        },
+        {
+          "label": "Use for client sites only",
+          "text": "Type 3 Coastal/Nordic or Type 4 Warm Bohemian clients where rounded, soft organic shapes align with the brand identity. Default indigo/rose corner tints must be replaced with client palette colours."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Bento-Grid",
+      "file": "knowledge/templates/Bento-Grid.md",
+      "uScore": "U1",
+      "summary": "Responsive 3-column CSS grid of information cards with variable column spans (1 or 2 columns wide).",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "blog-posts",
+      "file": "knowledge/templates/blog-posts.md",
+      "uScore": "U1",
+      "summary": "Three-column responsive card grid for articles.",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/card"
+      ],
+      "sectionPatterns": [
+        "journal"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand note",
+          "text": "Cards use rounded-xl, override to radius-0. Replace \"View all articles\" with specific copy per CTA rules. Author and date fields should be populated with real data."
+        },
+        {
+          "label": "Brand notes",
+          "text": "Cards use rounded-xl, override to radius-0. Replace \"View all articles\" with specific copy per CTA rules. Author and date fields should be populated with real data."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Component-Collection",
+      "file": "knowledge/templates/Component-Collection.md",
+      "uScore": "U1",
+      "summary": "Centred section heading with badge, then a horizontal tab bar of 3 tabs (each with icon and label).",
+      "dependencies": [
+        "@radix-ui/react-tabs",
+        "lucide-react",
+        "shadcn/badge",
+        "shadcn/button"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Dot-Pattern",
+      "file": "knowledge/templates/Dot-Pattern.md",
+      "uScore": "U1",
+      "summary": "An absolute inset-0 SVG element that fills its parent with a configurable tiled <circle> dot grid.",
+      "dependencies": [
+        "required"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "Default `fill-slate-500/50` is hardcoded — must be overridden via `className` prop to a semantic token (e.g. `fill-fg/10`, `fill-accent/20`). Demo corner accents use `border-red-500` and `bg-red-500` — replace with `--accent` or `--border` semantic tokens. `rounded-[40px]` on the inner content wrapper in demo violates zero-radius rule — remove. Demo quote copy is placeholder — replace with a real client testimonial or brand statement."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "Default `fill-slate-500/50` is hardcoded — must be overridden via `className` prop to a semantic token (e.g. `fill-fg/10`, `fill-accent/20`). Demo corner accents use `border-red-500` and `bg-red-500` — replace with `--accent` or `--border` semantic tokens. `rounded-[40px]` on the inner content wrapper in demo violates zero-radius rule — remove. Demo quote copy is placeholder — replace with a real client testimonial or brand statement."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Hero-Section-9",
+      "file": "knowledge/templates/Hero-Section-9.md",
+      "uScore": "U1",
+      "summary": "Fixed-position nav with transparent background and border-dashed bottom border.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "sectionPatterns": [
+        "hero",
+        "nav"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-3xl` on the mobile nav menu panel violates zero-radius rule — remove. Purple gradient (`#9B99FE`) in the embedded `Logo` SVG must be replaced with the client's wordmark SVG. Product screenshot images are Tailark-branded placeholders — replace with real client screenshots. CTA \"Start Building\" is generic — override with a specific client CTA per `knowledge/copy-voice/banned-phrases.yml`."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-3xl` on the mobile nav menu panel violates zero-radius rule — remove. Purple gradient (`#9B99FE`) in the embedded `Logo` SVG must be replaced with the client's wordmark SVG. Product screenshot images are Tailark-branded placeholders — replace with real client screenshots. CTA \"Start Building\" is generic — override with a specific client CTA per `knowledge/copy-voice/banned-phrases.yml`."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "hero-section-blocks",
+      "file": "knowledge/templates/hero-section-blocks.md",
+      "uScore": "U1",
+      "summary": "Centred hero with badge and headline, then a full-width product screenshot with a bottom-gradient fade.",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/badge",
+        "shadcn/separator"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand note",
+          "text": "Screenshot has rounded-xl, override to radius-0. Feature icons can be replaced with mono index numbers (01/02/03 in Geist Mono). Feature descriptions must be proof-based claims with numbers, not adjectives."
+        },
+        {
+          "label": "Brand notes",
+          "text": "Screenshot has rounded-xl, override to radius-0. Feature icons can be replaced with mono index numbers (01/02/03 in Geist Mono). Feature descriptions must be proof-based claims with numbers, not adjectives."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Image-Card-Gallery",
+      "file": "knowledge/templates/Image-Card-Gallery.md",
+      "uScore": "U1",
+      "summary": "Full-section horizontal carousel of large cards.",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/button",
+        "shadcn/carousel"
+      ],
+      "sectionPatterns": [
+        "gallery",
+        "work"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Pricing",
+      "file": "knowledge/templates/Pricing.md",
+      "uScore": "U1",
+      "summary": "Three-column pricing card grid with monthly/yearly frequency toggle (animated pill switcher).",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react",
+        "shadcn/button",
+        "shadcn/tooltip"
+      ],
+      "sectionPatterns": [
+        "pricing"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Section-With-Mockup",
+      "file": "knowledge/templates/Section-With-Mockup.md",
+      "uScore": "U1",
+      "summary": "Two-column split section on a black background.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "Brand note",
+          "text": "Background is hardcoded black, compatible with `--fg`. Text is hardcoded white, replace with `--fg-inverse` and semantic tokens before use."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Sparkles",
+      "file": "knowledge/templates/Sparkles.md",
+      "uScore": "U1",
+      "summary": "tsParticles-powered sparkle/star field.",
+      "dependencies": [
+        "@tsparticles/react",
+        "@tsparticles/slim",
+        "framer-motion (three packages",
+        "non-trivial bundle)"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "Only permitted after complete redesign",
+          "text": "If the particle behaviour is redesigned to be non-round, non-sparkle, and non-generic and passes the AI-default test, the tsParticles engine itself can be reused. The default configuration cannot ship."
+        }
+      ],
+      "banned": true
+    },
+    {
+      "name": "Spotlight-Cards",
+      "file": "knowledge/templates/Spotlight-Cards.md",
+      "uScore": "U1",
+      "summary": "Cards with a cursor-reactive radial gradient glow spotlight.",
+      "dependencies": [],
+      "sectionPatterns": [
+        "card"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Trusted-By",
+      "file": "knowledge/templates/Trusted-By.md",
+      "uScore": "U1",
+      "summary": "A single row of brand logo images that auto-scrolls left continuously as an infinite marquee.",
+      "dependencies": [
+        "embla-carousel-auto-scroll",
+        "shadcn/carousel"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "AI-Interface",
+      "file": "knowledge/templates/AI-Interface.md",
+      "uScore": "U2",
+      "summary": "Dark floating input box (neutral-900) with auto-resizing textarea, attach button, send button that activates on content.",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/textarea"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Animate-Card",
+      "file": "knowledge/templates/Animate-Card.md",
+      "uScore": "U2",
+      "summary": "Three stacked cards arranged in a perspective fan (front card: scale: 1, y: 12; middle: scale: 0.95, y: -16; back: scale: 0.9, y: -44).",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [
+        "work"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-t-xl` on cards violates zero-radius rule — remove top border-radius. `rounded-full` on the \"Read\" chevron button conflicts — the button must use `rounded-none` or omit radius. `cardData` image URLs and titles are placeholder (shadway.online, wrizzai.online, 21st.dev) — **must** be replaced with real client screenshots and content before shipping."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-t-xl` on cards violates zero-radius rule — remove top border-radius. `rounded-full` on the \"Read\" chevron button conflicts — the button must use `rounded-none` or omit radius. `cardData` image URLs and titles are placeholder (shadway.online, wrizzai.online, 21st.dev) — **must** be replaced with real client screenshots and content before shipping."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Background-Paths",
+      "file": "knowledge/templates/Background-Paths.md",
+      "uScore": "U2",
+      "summary": "Full-screen SVG layer of 36 animated Bezier paths flowing diagonally across the viewport.",
+      "dependencies": [
+        "framer-motion",
+        "shadcn/button"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Footer",
+      "file": "knowledge/templates/Footer.md",
+      "uScore": "U2",
+      "summary": "Cinematic GSAP-animated footer with a large central glowing wordmark, surrounding glass-morphism pill navigation links, scrolling ticker marquee beneath the wordmark, animated dot-grid background with gradient fade, radial aurora glow behind the wordmark, and an animated heartbeat icon.",
+      "dependencies": [
+        "approximately 40KB gzipped)",
+        "gsap",
+        "gsap/ScrollTrigger (heaviest dependency in the library"
+      ],
+      "sectionPatterns": [
+        "footer",
+        "nav"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "Glass morphism pills (rounded), aurora glow, Plus Jakarta Sans, and the radial gradient all conflict with design system spec. Do not use on any Yielde page without a complete reskin to Bebas Neue wordmark, zero-radius link rows, accent colour, and GSAP-only entrance logic."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "Glass morphism pills (rounded), aurora glow, Plus Jakarta Sans, and the radial gradient all conflict with design system spec. Do not use on any Yielde page without a complete reskin to Bebas Neue wordmark, zero-radius link rows, accent colour, and GSAP-only entrance logic."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Hero-Zoom",
+      "file": "knowledge/templates/Hero-Zoom.md",
+      "uScore": "U2",
+      "summary": "A video or image starts as a small centred window, then expands to full-screen as the user scrolls.",
+      "dependencies": [
+        "framer-motion",
+        "next/image"
+      ],
+      "sectionPatterns": [
+        "hero",
+        "portfolio"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Infinite-Grid",
+      "file": "knowledge/templates/Infinite-Grid.md",
+      "uScore": "U2",
+      "summary": "Full-screen animated grid of 40px squares that scrolls diagonally at 0.5px/frame using useAnimationFrame.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "Hardcoded `orange-500/40` and `blue-500/40` glow blobs must be replaced with semantic tokens (e.g. `--accent/40`, `--ramp1-4/40`). The `rounded-full` class on the blur elements violates the zero-radius rule — replace with `clip-path: circle(50%)` or remove entirely."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "Hardcoded `orange-500/40` and `blue-500/40` glow blobs must be replaced with semantic tokens (e.g. `--accent/40`, `--ramp1-4/40`). The `rounded-full` class on the blur elements violates the zero-radius rule — replace with `clip-path: circle(50%)` or remove entirely."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Lamp",
+      "file": "knowledge/templates/Lamp.md",
+      "uScore": "U2",
+      "summary": "Dramatic conic-gradient spotlight effect simulating a stage lamp shining downward from center-top.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [
+        "header"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Colour conflict",
+          "text": "Default is cyan. For Yielde brand, override gradient stops to accent colour before use."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Menu",
+      "file": "knowledge/templates/Menu.md",
+      "uScore": "U2",
+      "summary": "Sticky header that starts flush and on scroll transitions to: backdrop blur, border, shadow, and narrowed max-width (floats as a pill).",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/button"
+      ],
+      "sectionPatterns": [
+        "nav"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand note",
+          "text": "Hamburger icon conflicts with design system spec (word MENU required). Swap MenuToggleIcon for plain text label before shipping on any Yielde brand page."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Pricing-Section-4",
+      "file": "knowledge/templates/Pricing-Section-4.md",
+      "uScore": "U2",
+      "summary": "Dark (bg-black) three-column pricing grid.",
+      "dependencies": [
+        "@number-flow/react",
+        "@tsparticles/react",
+        "@tsparticles/slim",
+        "framer-motion",
+        "motion"
+      ],
+      "sectionPatterns": [
+        "pricing"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "Hardcoded `#3131f5` blue in border/blur elements; `rounded-xl` CTA buttons; `rounded-full` toggle track. All must be overridden."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "Hardcoded `#3131f5` blue in border/blur elements; `rounded-xl` CTA buttons; `rounded-full` toggle track. All must be overridden."
+        },
+        {
+          "label": "MISSING DEPENDENCY",
+          "text": "Imports `TimelineContent` from `@/components/ui/timeline-animation` — this component is **not included** in the template and must be sourced separately before shipping. Without it the template will not compile."
+        },
+        {
+          "label": "SPARKLES BANNED",
+          "text": "The template renders `<SparklesComp>` (tsParticles particle field) which is explicitly banned on all Yielde and client pages (see `knowledge/design-system/06-motion.md`). Remove and replace with a permitted ambient background (e.g. Silk-Background, Infinite-Grid, Background-Paths)."
+        }
+      ],
+      "banned": true
+    },
+    {
+      "name": "Projects-Showcase",
+      "file": "knowledge/templates/Projects-Showcase.md",
+      "uScore": "U2",
+      "summary": "Vertical list of project rows (title, description, year, arrow icon).",
+      "dependencies": [],
+      "sectionPatterns": [
+        "portfolio",
+        "work"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Radar-Effect",
+      "file": "knowledge/templates/Radar-Effect.md",
+      "uScore": "U2",
+      "summary": "Eight concentric circles expanding from a central point (opacity decreasing outward).",
+      "dependencies": [
+        "framer-motion",
+        "tailwind-merge"
+      ],
+      "sectionPatterns": [
+        "services"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-2xl` on `IconContainer` icon boxes violates zero-radius rule — remove border-radius or change to `rounded-none`. Default icon colour `text-slate-600` should map to a semantic token. Demo uses lucide-react icons (do NOT install react-icons — already substituted in the template)."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-2xl` on `IconContainer` icon boxes violates zero-radius rule — remove border-radius or change to `rounded-none`. Default icon colour `text-slate-600` should map to a semantic token. Demo uses lucide-react icons (do NOT install react-icons — already substituted in the template)."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Scroll-Container",
+      "file": "knowledge/templates/Scroll-Container.md",
+      "uScore": "U2",
+      "summary": "A content container (product screenshot or dashboard) that enters the viewport tilted at 20 degrees in 3D perspective, then straightens to 0 degrees as the user scrolls.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Slide-Button",
+      "file": "knowledge/templates/Slide-Button.md",
+      "uScore": "U2",
+      "summary": "A horizontal pill track (bg-gray-100) with a draggable icon button on the left.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "framer-motion",
+        "lucide-react"
+      ],
+      "sectionPatterns": [
+        "contact",
+        "form"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "The track container uses `rounded-full` (violates zero-radius rule — the track is not a button). Custom `shadow-button-inset` and `shadow-button` Tailwind classes are non-standard; add their definitions to globals.css before use. See template file for the shadow definitions."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "The track container uses `rounded-full` (violates zero-radius rule — the track is not a button). Custom `shadow-button-inset` and `shadow-button` Tailwind classes are non-standard; add their definitions to globals.css before use. See template file for the shadow definitions."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Sticky-Scroll",
+      "file": "knowledge/templates/Sticky-Scroll.md",
+      "uScore": "U2",
+      "summary": "Three-column photo grid (12-column CSS grid, each outer column 4 spans, centre column 4 spans).",
+      "dependencies": [
+        "lenis"
+      ],
+      "sectionPatterns": [
+        "gallery",
+        "portfolio",
+        "work"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-md` on all image figures violates zero-radius rule — remove entirely. `rounded-tr-full rounded-tl-full` on the footer div conflicts — remove and use a straight-edge or angled transition instead. Hardcoded `bg-slate-950` and `bg-black` must be replaced with `--bg` or `--surface` semantic tokens. Footer wordmark is placeholder \"ui-layout\" — replace with client wordmark."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-md` on all image figures violates zero-radius rule — remove entirely. `rounded-tr-full rounded-tl-full` on the footer div conflicts — remove and use a straight-edge or angled transition instead. Hardcoded `bg-slate-950` and `bg-black` must be replaced with `--bg` or `--surface` semantic tokens. Footer wordmark is placeholder \"ui-layout\" — replace with client wordmark."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "System-Explanation",
+      "file": "knowledge/templates/System-Explanation.md",
+      "uScore": "U2",
+      "summary": "Radial orbital diagram.",
+      "dependencies": [
+        "lucide-react",
+        "shadcn/badge",
+        "shadcn/button",
+        "shadcn/card"
+      ],
+      "sectionPatterns": [
+        "process"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Text-Parallax-Scroll",
+      "file": "knowledge/templates/Text-Parallax-Scroll.md",
+      "uScore": "U2",
+      "summary": "Multiple full-height sections, each with a sticky background image that scales from 1→0.85 and fades opacity 1→0 as the user scrolls past it (tracked via useScroll offset: [\"end end\", \"end start\"]).",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "sectionPatterns": [
+        "portfolio",
+        "process",
+        "services"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-3xl` on `StickyImage` violates zero-radius rule — remove entirely (it is not a button). `bg-white` wrapper must be replaced with `--bg` semantic token. `bg-neutral-950/70` image overlay must use `--fg/70` or equivalent. `text-neutral-600` body copy must use `--muted-fg` token. Button retains `rounded` (buttons are the design system exception to zero-radius). Image URLs and `ExampleContent` copy are placeholder lorem — replace entirely with real client assets."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-3xl` on `StickyImage` violates zero-radius rule — remove entirely (it is not a button). `bg-white` wrapper must be replaced with `--bg` semantic token. `bg-neutral-950/70` image overlay must use `--fg/70` or equivalent. `text-neutral-600` body copy must use `--muted-fg` token. Button retains `rounded` (buttons are the design system exception to zero-radius). Image URLs and `ExampleContent` copy are placeholder lorem — replace entirely with real client assets."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Text-Scramble",
+      "file": "knowledge/templates/Text-Scramble.md",
+      "uScore": "U2",
+      "summary": "Inline text in monospace uppercase.",
+      "dependencies": [],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "CSS extension",
+          "text": "Add `--primary: oklch(0.85 0.15 55)` (warm amber) to globals.css so the scramble highlight colour and glow match the brand accent rather than the default blue."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Background-Strings",
+      "file": "knowledge/templates/Background-Strings.md",
+      "uScore": "U3",
+      "summary": "Full-screen WebGL canvas running a raw GLSL fragment shader.",
+      "dependencies": [],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Critical colour conflict",
+          "text": "Default shader constants are hardcoded purple (lineColor vec4: 0.4, 0.2, 0.8). Purple is banned. These values must be overridden in the GLSL source before use on any Yielde page. After recolouring to copper/steel, this is one of the most technically distinctive backgrounds available."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Full-Screen-Scroll-FX",
+      "file": "knowledge/templates/Full-Screen-Scroll-FX.md",
+      "uScore": "U3",
+      "summary": "A pinned full-screen section (GSAP ScrollTrigger pin: true).",
+      "dependencies": [
+        "gsap"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "Background `<img>` src values in the demo are placeholder Unsplash URLs — replace with real, licensed client photography. Label list items default to lorem structure — replace with real section chapter names. Headline words must be specific and meaningful; the mask-reveal effect amplifies vague copy into a red flag."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "Background `<img>` src values in the demo are placeholder Unsplash URLs — replace with real, licensed client photography. Label list items default to lorem structure — replace with real section chapter names. Headline words must be specific and meaningful; the mask-reveal effect amplifies vague copy into a red flag."
+        },
+        {
+          "label": "Conversion note",
+          "text": "Source used `<style jsx>` (Next.js Pages Router only). Template converts all styles to a regular `<style>{\\`...\\`}</style>` template literal — compatible with both App Router and React outside Next.js."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Gooey-Text",
+      "file": "knowledge/templates/Gooey-Text.md",
+      "uScore": "U3",
+      "summary": "Two absolutely-positioned text spans layered on top of each other.",
+      "dependencies": [],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "Horizon-Hero-Section",
+      "file": "knowledge/templates/Horizon-Hero-Section.md",
+      "uScore": "U3",
+      "summary": "Full-height black canvas with a Three.js scene: 15,000 star particles across 3 depth layers, a nebula PlaneGeometry with a luminance-mapped texture, 4 mountain ShapeGeometry silhouette layers, and an atmospheric SphereGeometry rim.",
+      "dependencies": [
+        "gsap",
+        "three"
+      ],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Cross-portfolio rule",
+          "text": "Verify this template is not already used as the hero for an existing project in `state/projects/*.md`. Its visual signature is distinctive enough that two clients sharing it are visually identical."
+        },
+        {
+          "label": "Performance warning",
+          "text": "Three.js renderer + EffectComposer (bloom post-pass) + 15,000 particles + GSAP ScrollTrigger running simultaneously. This is the heaviest template in the library. Always test FPS on mid-range hardware before shipping. On mobile, reduce particle count and disable bloom."
+        },
+        {
+          "label": "CRITICAL — MISSING CSS",
+          "text": "The component uses 15+ custom class names (`.hero-container`, `.hero-canvas`, `.hero-content`, `.hero-title`, `.side-menu`, `.scroll-progress`, `.scroll-sections`, `.content-section`, etc.) with zero CSS provided in the source. A full minimum-viable CSS block is embedded in the template file and **must** be added to globals.css or a CSS module before use. Without it the layout is completely broken."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Scroll-Morph-Hero",
+      "file": "knowledge/templates/Scroll-Morph-Hero.md",
+      "uScore": "U3",
+      "summary": "20 FlipCard components (each 64×96px, with a 3D rotateY-180 hover flip between front and back faces).",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "sectionPatterns": [
+        "hero",
+        "portfolio",
+        "services"
+      ],
+      "brandConflicts": [
+        {
+          "label": "Brand conflicts",
+          "text": "`rounded-xl` on `FlipCard` faces violates zero-radius rule — remove. Hardcoded gradient `from-slate-900/50 to-slate-800/50` on card faces must be replaced with semantic surface tokens. FlipCard back-face content is placeholder text (`projectData` titles/categories) — replace with real client work before shipping."
+        },
+        {
+          "label": "Brand conflict",
+          "text": "`rounded-xl` on `FlipCard` faces violates zero-radius rule — remove. Hardcoded gradient `from-slate-900/50 to-slate-800/50` on card faces must be replaced with semantic surface tokens. FlipCard back-face content is placeholder text (`projectData` titles/categories) — replace with real client work before shipping."
+        },
+        {
+          "label": "Lenis conflict",
+          "text": "The virtual scroll implementation captures `wheel` events directly on the container element. If Lenis is active on the same page, it will intercept these events before they reach the component. Isolate this component from the Lenis scroll context (e.g., wrap in a Lenis `<ReactLenis root={false}>` boundary or detach Lenis on this section's mount)."
+        }
+      ],
+      "banned": false
+    },
+    {
+      "name": "Silk-Background",
+      "file": "knowledge/templates/Silk-Background.md",
+      "uScore": "U3",
+      "summary": "Full-screen canvas animation of flowing silk-like noise texture.",
+      "dependencies": [],
+      "sectionPatterns": [
+        "hero"
+      ],
+      "brandConflicts": [],
+      "banned": false
+    },
+    {
+      "name": "WebGl-Shader",
+      "file": "knowledge/templates/WebGl-Shader.md",
+      "uScore": "U3",
+      "summary": "Three.js WebGL renderer with a GLSL fragment shader producing animated glowing sine wave lines.",
+      "dependencies": [
+        "three"
+      ],
+      "sectionPatterns": [],
+      "brandConflicts": [
+        {
+          "label": "Colour reality",
+          "text": "Default output is full RGB spectrum. Use for client sites only unless you are comfortable modifying GLSL. Palette-agnostic by default."
+        }
+      ],
+      "banned": false
+    }
+  ]
+}

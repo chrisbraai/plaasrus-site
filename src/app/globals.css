@@ -1,0 +1,381 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Palette — Outeniqua Stoep (Plaasrus) ───────────────────────────────────── */
+/*
+   Palette: Outeniqua Stoep — extends Braambos parent system with a mountain sage accent.
+   Ramp 1 (structural): Bark → linen — warm earthy dark-to-light from Braambos parent.
+   Ramp 2 (accent): Stoep sage — early-morning mountain-light register.
+   Ramp 3 (danger): Braambos terracotta (#C75A30) — repurposed as stop/alert on this site.
+
+   Named tokens (reference):
+     --stoep-0 #0C1410  --stoep-1 #1C2E1E  --stoep-2 #324F34  --stoep-3 ★ #527A54
+     --stoep-4 #82A884  --stoep-5 #B8D0BA  --stoep-6 #ECF4ED
+     --bark-0 #0E0D0B   --bark-1 #221C12   primary-text #4E3C27   linen-6 #F0EBE2
+*/
+
+:root {
+  /* Ramp 1 — structural (bark to linen) */
+  --ramp1-0: #4E3C27;   /* primary text — warm brown */
+  --ramp1-1: #221C12;   /* dark bark — inverse bg, footer, stat blocks */
+  --ramp1-3: #8C7156;   /* secondary text */
+  --ramp1-4: #B09470;   /* tertiary text, UI accents */
+  --ramp1-5: #C8B49C;   /* borders, dividers */
+  --ramp1-6: #F0EBE2;   /* linen — subtle surfaces */
+
+  /* Ramp 2 — accent (Outeniqua stoep sage) */
+  --ramp2-1: #1C2E1E;   /* dark fynbos — hover state */
+  --ramp2-3: #527A54;   /* Outeniqua sage ★ — PRIMARY accent, CTAs */
+  --ramp2-5: #B8D0BA;   /* mountain mist — raised surfaces */
+  --ramp2-6: #ECF4ED;   /* stoep wash — page background */
+
+  /* Ramp 3 — danger (Braambos terracotta) */
+  --ramp3-2: #C75A30;   /* terracotta — danger surface */
+}
+
+/* ─── Semantic tokens ─────────────────────────────────────────────────────── */
+/*
+   Map your ramp anchors to these semantic names.
+   Update the var() references below to match your ramp names above.
+*/
+
+:root {
+  /* Surfaces */
+  --bg:           var(--ramp2-6);
+  --bg-raised:    var(--ramp2-5);
+  --bg-subtle:    var(--ramp1-6);
+  --bg-inverse:   var(--ramp1-1);
+  --bg-newsprint: var(--ramp2-5);
+
+  /* Ink */
+  --fg:                var(--ramp1-0);
+  --fg-muted:          var(--ramp1-3);
+  --fg-quiet:          var(--ramp1-4);
+  --fg-inverse:        var(--ramp2-6);
+  --fg-inverse-muted:  var(--ramp2-5);
+
+  /* Structure */
+  --rule:         var(--ramp1-5);
+  --rule-strong:  var(--ramp1-4);
+
+  /* Action */
+  --accent:       var(--ramp2-3);
+  --accent-ink:   var(--ramp1-0);
+  --accent-hover: var(--ramp2-1);
+
+  /* Proof */
+  --stat:         var(--ramp1-1);
+  --stat-ink:     var(--ramp2-5);
+
+  /* Stop */
+  --danger:       var(--ramp3-2);
+  --danger-ink:   var(--ramp2-6);
+  --danger-hover: color-mix(in srgb, var(--danger) 80%, black);
+
+  /* Placeholder tiles */
+  --placeholder-a: var(--bg-inverse);
+  --placeholder-b: var(--accent);
+  --placeholder-c: var(--bg-subtle);
+
+  /* Motion */
+  --ease:         cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter:   cubic-bezier(0.1, 0.6, 0.2, 1);
+  --dur-instant:  80ms;
+  --dur-fast:     120ms;
+  --dur-base:     200ms;
+  --dur-slow:     400ms;
+  --dur-reveal:   600ms;
+  --dur-ambient:  8s;
+
+  /* Stagger library — see knowledge/design-system/06b-motion-specs.md */
+  --stagger-cascade: 60ms;
+  --stagger-reveal:  80ms;
+  --stagger-snap:    40ms;
+  --stagger-drift:  120ms;
+
+  /* Layout */
+  --container-max:            1280px;
+  --container-pad:            32px;
+  /* Section padding floors — Mandate 3 (13-animation-mandates.md). Never tighter.
+     Values were 48/96/144 in v1 and drifted below the mandate floor on every shipped site. */
+  --section-pad-y-compressed: 80px;
+  --section-pad-y:            144px;
+  --section-pad-y-generous:   200px;
+  --header-h:                 64px;
+
+  /* shadcn primitive bridge */
+  --radius:               0;
+  --background:           var(--bg);
+  --foreground:           var(--fg);
+  --card:                 var(--bg-raised);
+  --card-foreground:      var(--fg);
+  --popover:              var(--bg-raised);
+  --popover-foreground:   var(--fg);
+  --primary:              var(--accent);
+  --primary-foreground:   var(--accent-ink);
+  --secondary:            var(--bg-subtle);
+  --secondary-foreground: var(--fg);
+  --muted:                var(--bg-raised);
+  --muted-foreground:     var(--fg-muted);
+  --accent-foreground:    var(--fg);
+  --destructive:          var(--danger);
+  --border:               var(--rule);
+  --input:                var(--rule);
+  --ring:                 var(--accent);
+}
+
+/* ─── Breakpoints ────────────────────────────────────────────────────────── */
+
+@theme {
+  --breakpoint-md: 800px;
+  --animate-letter-in:    letter-in  400ms var(--ease-enter)  both;
+  --animate-slab-draw:    slab-draw  200ms var(--ease) 300ms  both;
+  --animate-scale-punch:  scale-punch var(--dur-instant) steps(2) 120ms both;
+  --animate-marquee:      marquee    8s    linear         infinite;
+  --animate-ticker:       marquee    12s   linear         infinite;
+  --animate-flash-copper: flash-copper var(--dur-slow) var(--ease) both;
+}
+
+@keyframes letter-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slab-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes scale-punch {
+  from { transform: scale(0.92); }
+  to   { transform: scale(1); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ticker (#14) reuses the marquee keyframe via --animate-ticker */
+
+@keyframes flash-copper {
+  0%, 100% { color: currentColor; }
+  50%       { color: var(--accent); }
+}
+
+/* ─── Tailwind theme extension ────────────────────────────────────────────── */
+
+@theme inline {
+  /* shadcn colour mappings */
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+  --radius-sm:                  calc(var(--radius) * 0.6);
+  --radius-md:                  calc(var(--radius) * 0.8);
+  --radius-lg:                  var(--radius);
+  --radius-xl:                  calc(var(--radius) * 1.4);
+
+  /* Yielde semantic short names */
+  --color-bg:                var(--bg);
+  --color-bg-raised:         var(--bg-raised);
+  --color-bg-subtle:         var(--bg-subtle);
+  --color-bg-inverse:        var(--bg-inverse);
+  --color-bg-newsprint:      var(--bg-newsprint);
+  --color-fg:                var(--fg);
+  --color-fg-muted:          var(--fg-muted);
+  --color-fg-quiet:          var(--fg-quiet);
+  --color-fg-inverse:        var(--fg-inverse);
+  --color-fg-inverse-muted:  var(--fg-inverse-muted);
+  --color-rule:              var(--rule);
+  --color-rule-strong:       var(--rule-strong);
+  --color-accent-ink:        var(--accent-ink);
+  --color-accent-hover:      var(--accent-hover);
+  --color-stat:              var(--stat);
+  --color-stat-ink:          var(--stat-ink);
+  --color-danger:            var(--danger);
+  --color-danger-ink:        var(--danger-ink);
+  --color-danger-hover:      var(--danger-hover);
+
+  /* Fonts */
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-display: var(--font-cormorant-garamond);
+  --font-serif:   var(--font-source-serif-4);
+
+  /* Typography scale — display (Cormorant Garamond) */
+  --text-display-xxl:   clamp(80px, 16vw, 260px);
+  --text-display-xl:    clamp(48px, 9vw, 128px);
+  --text-display-l:     clamp(48px, 6.2vw, 96px);
+  --text-display-m:     80px;
+  --text-display-s:     56px;
+  --text-display-xs:    48px;
+  --text-display-2xs:   40px;
+  --text-display-micro: 28px;
+
+  /* Typography scale — sans (Geist) */
+  --text-hero-lede:    22px;
+  --text-lead:         20px;
+  --text-lede:         18px;
+  --text-body-lg:      16px;
+  --text-body:         15px;
+  --text-body-sm:      14px;
+  --text-body-xs:      13px;
+  --text-label:        12px;
+  --text-overline:     11px;
+  --text-micro:        10px;
+  --text-nav-wordmark: 30px;
+
+  /* Line-heights */
+  --leading-display-tight: 0.85;
+  --leading-display:       0.9;
+  --leading-tight:         0.92;
+  --leading-header:        0.95;
+  --leading-snug:          1.25;
+  --leading-normal:        1.4;
+  --leading-relaxed:       1.5;
+  --leading-body:          1.65;
+  --leading-loose:         1.7;
+  --leading-serif:         1.75;
+
+  /* Serif scale — Source Serif 4 */
+  --text-pullquote: 24px;
+
+  /* Letter-spacing */
+  --tracking-display-tight: -0.02em;
+  --tracking-display:        0.01em;
+  --tracking-body:           0em;
+  --tracking-button:         0.06em;
+  --tracking-badge:          0.16em;
+  --tracking-micro:          0.18em;
+  --tracking-footer:         0.10em;
+  --tracking-wordmark:       0.02em;
+}
+
+/* ─── Global reset ────────────────────────────────────────────────────────── */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  /* Yielde fingerprint — link hover underline animation (see 11-fingerprint.md §7) */
+  /* Draws L→R on hover, undraws L→R on hover-out. Both originate from left. */
+  a:not([class]) {
+    position: relative;
+    text-decoration: none;
+  }
+  a:not([class])::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 100ms var(--ease);
+  }
+  a:not([class]):hover::after {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a:not([class])::after {
+      transition: none;
+    }
+  }
+}
+
+/* ─── CSS scroll-driven animations — progressive enhancement ─────────────────── */
+/*
+ * Spec: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations
+ * Browser status (April 2026): Baseline in Chrome/Edge 115+, Safari 26+, Firefox behind
+ * `layout.css.scroll-driven-animations.enabled` flag. Firefox enable-by-default is tracked
+ * in Interop 2026 and expected before end of year.
+ *
+ * These blocks are purely additive: when the engine supports animation-timeline, the compositor
+ * drives the effect (zero main-thread cost). When it does not, the JS-based equivalents in
+ * scaffold/src/hooks/useScrollProgress.ts and motion's useScroll continue to render the same
+ * visual — nothing breaks in Firefox.
+ *
+ * Opt in by adding the relevant class to an element; opt-out is not needed because the
+ * animation-timeline property is ignored where unsupported.
+ */
+@supports (animation-timeline: scroll()) {
+
+  /* Scroll progress rail — effect #13. Paired with <ScrollProgressRail /> component which
+     renders the element with class `yielde-scroll-rail`. The component's existing JS
+     useScrollProgress hook continues to run, but on supporting browsers the CSS version
+     takes over via !important on the transform — one less paint on the main thread. */
+  @keyframes yielde-scroll-rail-fill {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .yielde-scroll-rail {
+    transform-origin: left;
+    animation: yielde-scroll-rail-fill linear forwards;
+    animation-timeline: scroll(root);
+  }
+
+  /* Section vignette fade — pairs with any section that has class `yielde-section-vignette`.
+     The section's background gains a radial gradient that fades in when the section enters
+     the viewport (from 30% below the fold to centred) and fades out when it leaves (centred
+     to 30% above the fold). ViewTimeline scopes the animation to the element's own visibility. */
+  @keyframes yielde-section-vignette-pulse {
+    0%   { opacity: 0; }
+    30%  { opacity: 1; }
+    70%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .yielde-section-vignette::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 40%, var(--bg-subtle) 100%);
+    opacity: 0;
+    animation: yielde-section-vignette-pulse linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  /* Respect the user's reduced-motion preference even under scroll-driven timelines. */
+  @media (prefers-reduced-motion: reduce) {
+    .yielde-scroll-rail,
+    .yielde-section-vignette::after {
+      animation: none;
+    }
+  }
+}

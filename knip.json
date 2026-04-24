@@ -1,0 +1,47 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/app/**/page.tsx",
+    "src/app/**/layout.tsx",
+    "src/app/**/error.tsx",
+    "src/app/**/not-found.tsx",
+    "src/app/**/template.tsx",
+    "src/app/**/loading.tsx",
+    "src/app/api/**/route.ts",
+    "src/app/sitemap.ts",
+    "src/app/robots.ts",
+    "src/app/global-error.tsx",
+    "src/middleware.ts",
+    "src/instrumentation.ts",
+    "src/instrumentation-client.ts",
+    "next.config.ts",
+    "vitest.config.ts",
+    "src/test/setup.ts",
+    "src/test/hooks.test.ts",
+    "src/components/**/*.test.tsx"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "*.ts",
+    "*.tsx"
+  ],
+  "ignore": [
+    "next-env.d.ts",
+    ".next/**",
+    "node_modules/**",
+    ".lighthouse/**"
+  ],
+  "ignoreDependencies": [
+    "@testing-library/dom",
+    "@axe-core/react",
+    "jsdom",
+    "tw-animate-css",
+    "sonner",
+    "shadcn",
+    "@biomejs/biome"
+  ],
+  "ignoreExportsUsedInFile": {
+    "interface": true,
+    "type": true
+  }
+}

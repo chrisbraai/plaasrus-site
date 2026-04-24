@@ -1,0 +1,142 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Type-check · Test · Build
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      - name: Cache node_modules
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: bun install --frozen-lockfile
+
+      - name: Type-check
+        run: bunx tsc --noEmit
+
+      - name: Lint (Biome)
+        # Non-blocking until the ruleset is tuned for this codebase. Promote to hard-fail after one sprint of review.
+        run: bunx biome lint . || true
+
+      - name: Format check (Biome)
+        run: bunx biome format . || true
+
+      - name: Dead code / unused deps (Knip)
+        # Warn-only until the first clean pass. Tune knip.json ignoreDependencies before enforcement.
+        run: bunx knip --reporter compact || true
+
+      - name: Test
+        run: bun run test
+
+      - name: Build
+        run: bun run build
+
+  agent-eval:
+    name: Agent eval (PromptFoo) — runs only on .claude/agents or .claude/commands changes
+    runs-on: ubuntu-latest
+    needs: ci
+    # Gate on file paths. PromptFoo evals consume real API tokens; only re-run when the
+    # surface that affects agent behaviour changes.
+    if: |
+      github.event_name == 'pull_request' &&
+      (contains(toJSON(github.event.pull_request.files), '.claude/agents/') ||
+       contains(toJSON(github.event.pull_request.files), '.claude/commands/'))
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      - name: Skip if API key absent
+        if: env.ANTHROPIC_API_KEY == ''
+        run: echo "::warning::ANTHROPIC_API_KEY secret not set — agent eval skipped."
+
+      - name: PromptFoo eval across all 7 agent suites
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          # Iterate so one suite failure does not short-circuit the others.
+          fail=0
+          for suite in .claude/agents/__tests__/*.yaml; do
+            echo "── $suite ───────────────────────────────────────────────"
+            bunx promptfoo@latest eval --config "$suite" --no-cache || fail=$((fail + 1))
+          done
+          if [ $fail -gt 0 ]; then
+            echo "::error::$fail agent suite(s) failed"
+            exit 1
+          fi
+
+  lighthouse-ci:
+    name: Lighthouse CI — Core Web Vitals budget
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.event_name == 'pull_request'
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      - name: Cache node_modules
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Start Next.js server
+        run: bun run start &
+
+      - name: Wait for server on port 3000
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000 > /dev/null && break
+            sleep 2
+          done
+
+      - name: Run Lighthouse CI
+        run: bunx @lhci/cli@latest autorun
