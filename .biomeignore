@@ -5,3 +5,5 @@ coverage
 .lighthouse
 next-env.d.ts
 public
+open-next.config.ts
+wrangler.jsonc
