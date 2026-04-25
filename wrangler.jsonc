@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "plaasrus",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".open-next/worker.js",
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // Secrets — set via Cloudflare dashboard (Workers > Settings > Variables & Secrets)
+  // or `wrangler secret put <NAME>`. Never committed as plain text.
+  //
+  // Required for /api/contact:
+  //   RESEND_API_KEY   — Resend API key
+  //   FROM_EMAIL       — sender address
+  //   TO_EMAIL         — recipient address
+  //
+  // Required at cf:build time (set as build env var in Cloudflare Pages/Workers settings):
+  //   NEXT_PUBLIC_SENTRY_DSN — baked into the JS bundle by next build
+}

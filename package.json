@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun --bun next dev",
     "build": "bun --bun next build",
+    "cf:build": "bunx opennextjs-cloudflare build",
     "start": "bun --bun next start",
     "test": "vitest run",
     "analyze": "ANALYZE=true bun --bun next build",
@@ -52,6 +53,7 @@
     "knip": "^5.68.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.4",
+    "@opennextjs/cloudflare": "^1"
   }
 }
