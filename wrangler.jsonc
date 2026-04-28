@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "plaasrus",
+  "name": "plaasrus-site",
   "compatibility_date": "2025-04-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "main": ".open-next/worker.js",
